@@ -1,7 +1,7 @@
 class Hand
   include Comparable
 
-  attr_reader :value
+  attr_accessor :value
 
   def initialize(value)
     @value = value
@@ -25,6 +25,17 @@ class Hand
       puts "Paper covers Rock!"
     when "s" 
       puts "Scissors cuts Paper!"
+    end
+  end
+
+  def to_s
+    case value
+    when "r" 
+      puts "Rock"
+    when "p" 
+      puts "Paper"
+    when "s" 
+      puts "Scissors"
     end
   end
 end
@@ -82,6 +93,14 @@ class Game
     @draws = 0
   end 
 
+  def show_choices
+    puts
+    puts "#{player.name} chooses #{player.hand}"
+    puts
+    puts "#{computer.name} chooses #{computer.hand}"
+    puts
+  end
+
   def compare_hands
     if player.hand == computer.hand
       puts
@@ -112,6 +131,7 @@ class Game
     loop do
       player.pick_hand
       computer.pick_hand
+      show_choices
       compare_hands
       display_score
       begin
