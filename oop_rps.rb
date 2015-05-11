@@ -95,9 +95,9 @@ class Game
 
   def show_choices
     puts
-    puts "#{player.name} chooses #{player.hand}"
+    puts "#{player.name} chooses #{player.hand.value}"
     puts
-    puts "#{computer.name} chooses #{computer.hand}"
+    puts "#{computer.name} chooses #{computer.hand.value}"
     puts
   end
 
