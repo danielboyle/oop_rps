@@ -18,7 +18,7 @@ class Hand
   end
 
   def display_winning_message
-    case @value
+    case value
     when "r" 
       puts "Rock smashes Scissors!"
     when "p" 
@@ -35,10 +35,6 @@ class Player
 
   def initialize(name)
     @name = name
-  end
-
-  def to_s
-    "#{name} has a choice of #{hand}"
   end
 end
 
@@ -77,38 +73,41 @@ class Game
   attr_reader :player, :computer
   attr_accessor :wins, :losses, :draws
 
-  @@wins = 0
-  @@losses = 0
-  @@draws = 0
-
   def initialize
     @player = Human.new(" ")
     @computer = Computer.new("Computer")
+
+    @wins = 0
+    @losses = 0
+    @draws = 0
   end 
 
   def compare_hands
     if player.hand == computer.hand
+      puts
       puts "It's a draw."
-      @@draws += 1
+      @draws += 1
     elsif player.hand > computer.hand
       player.hand.display_winning_message
+      puts
       puts "#{player.name} won!"
-      @@wins += 1
+      @wins += 1
     else
       computer.hand.display_winning_message
+      puts
       puts "#{computer.name} won!"
-      @@losses += 1
+      @losses += 1
     end
   end
 
   def display_score
     puts
-    puts "Score // Player: #{@@wins} / Computer: #{@@losses} / Draws: #{@@draws}"
+    puts "Score // Player: #{wins} / Computer: #{losses} / Draws: #{draws}"
     puts
   end
 
   def play
-    player.set_name
+      player.set_name
 
     loop do
       player.pick_hand
