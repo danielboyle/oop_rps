@@ -10,7 +10,9 @@ class Hand
   def <=>(another_hand)
     if @value == another_hand.value
       0
-    elsif (@value == "r" && another_hand.value == "s") || (@value == "p" && another_hand.value == "r") ||(@value == "s" && another_hand.value == "p")
+    elsif (@value == "r" && another_hand.value == "s") || 
+          (@value == "p" && another_hand.value == "r") || 
+          (@value == "s" && another_hand.value == "p")
       1
     else
       -1
@@ -126,7 +128,7 @@ class Game
   end
 
   def play
-      player.set_name
+    player.set_name
 
     begin
       player.pick_hand
