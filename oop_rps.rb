@@ -31,11 +31,11 @@ class Hand
   def to_s
     case value
     when "r" 
-      puts "Rock"
+      "Rock"
     when "p" 
-      puts "Paper"
+      "Paper"
     when "s" 
-      puts "Scissors"
+      "Scissors"
     end
   end
 end
@@ -95,9 +95,9 @@ class Game
 
   def show_choices
     puts
-    puts "#{player.name} chooses #{player.hand.value}"
+    puts "#{player.name} chooses #{player.hand}"
     puts
-    puts "#{computer.name} chooses #{computer.hand.value}"
+    puts "#{computer.name} chooses #{computer.hand}"
     puts
   end
 
@@ -128,18 +128,15 @@ class Game
   def play
       player.set_name
 
-    loop do
+    begin
       player.pick_hand
       computer.pick_hand
       show_choices
       compare_hands
       display_score
-      begin
-        puts "Would you like to play again? (y/n)"
-        answer = gets.chomp.downcase
-      end until answer == "y" || answer == "n"
-      break if answer != "y"
-    end
+      puts "Would you like to play again? (y/n)"
+      answer = gets.chomp.downcase
+    end until answer != "y"
 
     system "clear"
     puts "Thanks for playing!"
